@@ -26,13 +26,16 @@ namespace LiveSearch
         {
             this.results.Clear();
 
+            //Loop through list
             for (int i = 0; i < list.Length; i++)
             {
                 int termPos = 0;
                 bool found = false;
 
+                //Loop through characters in item in list
                 for (int j = 0; j < list[i].Length; j++)
                 {
+                    //If we have not found a whole term yet
                     if (!found)
                     {
                         if (list[i][j] == term[termPos])
@@ -60,13 +63,16 @@ namespace LiveSearch
         {
             this.results.Clear();
 
+            //Loop through list
             for (int i = 0; i < list.Length; i++)
             {
                 int termPos = 0;
                 bool found = false;
 
+                //Loop through characters in item in list
                 for (int j = 0; j < list[i].Length; j++)
                 {
+                    //If we have not found a whole term yet
                     if (!found)
                     {
                         if (list[i][j] == term[termPos])
@@ -98,6 +104,7 @@ namespace LiveSearch
         {
             this.results.Clear();
 
+            //Loop through list
             for (int i = 0; i < list.Length; i++)
             {
                 if (list[i].Contains(term))
