@@ -22,7 +22,7 @@ namespace LiveSearch
             return this.list;
         }
 
-        public List<string> searchManualSpread(string term)
+        public List<string> searchManualSpread(string term, bool caseSensitive)
         {
             this.results.Clear();
 
@@ -38,7 +38,7 @@ namespace LiveSearch
                     //If we have not found a whole term yet
                     if (!found)
                     {
-                        if (list[i][j] == term[termPos])
+                        if (compareChar(list[i][j], term[termPos], caseSensitive))
                         {
                             termPos++;
 
@@ -59,7 +59,7 @@ namespace LiveSearch
             return this.results;
         }
 
-        public List<string> searchManual(string term)
+        public List<string> searchManual(string term, bool caseSensitive)
         {
             this.results.Clear();
 
@@ -75,7 +75,7 @@ namespace LiveSearch
                     //If we have not found a whole term yet
                     if (!found)
                     {
-                        if (list[i][j] == term[termPos])
+                        if (compareChar(list[i][j], term[termPos], caseSensitive))
                         {
                             termPos++;
 
@@ -100,16 +100,46 @@ namespace LiveSearch
             return this.results;
         }
 
-        public List<string> searchContains(string term)
+        private bool compareChar(char first, char second, bool caseSensitive)
+        {
+            if (caseSensitive)
+            {
+                if(first == second)
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                if(Char.ToLower(first) == Char.ToLower(second))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public List<string> searchContains(string term, bool caseSensitive)
         {
             this.results.Clear();
 
             //Loop through list
             for (int i = 0; i < list.Length; i++)
             {
-                if (list[i].Contains(term))
+                if (caseSensitive)
                 {
-                    this.results.Add(list[i]);
+                    if (list[i].Contains(term))
+                    {
+                        this.results.Add(list[i]);
+                    }
+                }
+                else
+                {
+                    if(list[i].IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        this.results.Add(list[i]);
+                    }
                 }
             }
 

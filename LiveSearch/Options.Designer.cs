@@ -32,6 +32,7 @@
             this.searchTypeCB = new System.Windows.Forms.ComboBox();
             this.stdGB = new System.Windows.Forms.GroupBox();
             this.stdLabel = new System.Windows.Forms.Label();
+            this.caseSensitiveCB = new System.Windows.Forms.CheckBox();
             this.stdGB.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,11 +78,25 @@
             this.stdLabel.TabIndex = 0;
             this.stdLabel.Text = "descriptionLabel";
             // 
+            // caseSensitiveCB
+            // 
+            this.caseSensitiveCB.AutoSize = true;
+            this.caseSensitiveCB.Checked = true;
+            this.caseSensitiveCB.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.caseSensitiveCB.Location = new System.Drawing.Point(15, 121);
+            this.caseSensitiveCB.Name = "caseSensitiveCB";
+            this.caseSensitiveCB.Size = new System.Drawing.Size(96, 17);
+            this.caseSensitiveCB.TabIndex = 3;
+            this.caseSensitiveCB.Text = "Case Sensitive";
+            this.caseSensitiveCB.UseVisualStyleBackColor = true;
+            this.caseSensitiveCB.CheckedChanged += new System.EventHandler(this.caseSensitiveCB_CheckedChanged);
+            // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(241, 127);
+            this.ClientSize = new System.Drawing.Size(241, 150);
+            this.Controls.Add(this.caseSensitiveCB);
             this.Controls.Add(this.stdGB);
             this.Controls.Add(this.searchTypeCB);
             this.Controls.Add(this.searchTypeLabel);
@@ -104,5 +119,6 @@
         private System.Windows.Forms.ComboBox searchTypeCB;
         private System.Windows.Forms.GroupBox stdGB;
         private System.Windows.Forms.Label stdLabel;
+        private System.Windows.Forms.CheckBox caseSensitiveCB;
     }
 }

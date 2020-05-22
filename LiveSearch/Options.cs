@@ -15,7 +15,7 @@ namespace LiveSearch
         private MainForm main;
         private Strings descriptionStrings;
 
-        public Options(MainForm main, int current)
+        public Options(MainForm main, int current, bool caseSensitive)
         {
             InitializeComponent();
             this.descriptionStrings = new Strings();
@@ -26,6 +26,7 @@ namespace LiveSearch
 
             searchTypeCB.SelectedIndex = current;
             setDescription(current);
+            caseSensitiveCB.Checked = caseSensitive;
         }
 
         private void searchTypeCB_SelectedValueChanged(object sender, EventArgs e)
@@ -48,6 +49,11 @@ namespace LiveSearch
                     stdLabel.Text = descriptionStrings.SPREAD_DESCRIPTION;
                     break;
             }
+        }
+
+        private void caseSensitiveCB_CheckedChanged(object sender, EventArgs e)
+        {
+            main.setCaseS(caseSensitiveCB.Checked);
         }
     }
 }

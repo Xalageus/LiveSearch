@@ -15,6 +15,7 @@ namespace LiveSearch
     {
         private Searchables list;
         private int searchType;
+        private bool caseSensitive;
 
         public MainForm()
         {
@@ -22,6 +23,7 @@ namespace LiveSearch
 
             this.list = new Searchables();
             this.searchType = 0;
+            this.caseSensitive = true;
             getInitList();
         }
 
@@ -38,16 +40,16 @@ namespace LiveSearch
                 switch (searchType)
                 {
                     case 0:
-                        results = list.searchManual(searchBar.Text);
+                        results = list.searchManual(searchBar.Text, caseSensitive);
                         break;
                     case 1:
-                        results = list.searchContains(searchBar.Text);
+                        results = list.searchContains(searchBar.Text, caseSensitive);
                         break;
                     case 2:
-                        results = list.searchManualSpread(searchBar.Text);
+                        results = list.searchManualSpread(searchBar.Text, caseSensitive);
                         break;
                     default:
-                        results = list.searchManual(searchBar.Text);
+                        results = list.searchManual(searchBar.Text, caseSensitive);
                         break;
                 }
 
@@ -75,9 +77,14 @@ namespace LiveSearch
             this.searchType = type;
         }
 
+        public void setCaseS(bool enable)
+        {
+            this.caseSensitive = enable;
+        }
+
         private void optionsButton_Click(object sender, EventArgs e)
         {
-            Options options = new Options(this, searchType);
+            Options options = new Options(this, searchType, caseSensitive);
             options.ShowDialog();
         }
     }
